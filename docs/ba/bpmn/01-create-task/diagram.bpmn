@@ -1,0 +1,418 @@
+<?xml version='1.0' encoding='utf-8'?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_bpmn-01-create-task" targetNamespace="https://ticktok.local/analysis/bpmn-01-create-task" exporter="TickTok BA diagrams" exporterVersion="1.0">
+  <bpmn:collaboration id="Collaboration_bpmn-01-create-task">
+    <bpmn:participant id="Participant_bpmn-01-create-task" name="BPMN-01 · Tạo công việc và đặt lời nhắc" processRef="Process_bpmn-01-create-task" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_bpmn-01-create-task" name="BPMN-01 · Tạo công việc và đặt lời nhắc" isExecutable="false">
+    <bpmn:documentation>Quy trình nghiệp vụ TickTok. Mô hình phân tích, không thực thi; thao tác SDK và callback được biểu diễn bằng service task.</bpmn:documentation>
+    <bpmn:laneSet id="LaneSet_bpmn-01-create-task">
+      <bpmn:lane id="Lane_bpmn-01-create-task_0" name="Tương tác người dùng / UI">
+        <bpmn:flowNodeRef>T_start</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_input</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_hint</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_clear</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_noauth</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_authend</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_bpmn-01-create-task_1" name="Ứng dụng TickTok">
+        <bpmn:flowNodeRef>T_empty</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_prepare</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_badreminder</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_merge</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_auth</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_error</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_errorend</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_success</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_end</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_bpmn-01-create-task_2" name="Firestore SDK / callback">
+        <bpmn:flowNodeRef>T_add</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_result</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_id</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_cancel</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_bpmn-01-create-task_3" name="Android: quyền và alarm">
+        <bpmn:flowNodeRef>T_future</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_request</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T_schedule</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="T_start" name="Bấm thêm công việc">
+      <bpmn:outgoing>Flow_1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="T_input" name="Nhập nội dung, ngày, ưu tiên và lời nhắc; bấm Gửi">
+      <bpmn:incoming>Flow_1</bpmn:incoming>
+      <bpmn:incoming>Flow_4</bpmn:incoming>
+      <bpmn:outgoing>Flow_2</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="T_empty" name="Nội dung sau trim rỗng?" default="Flow_5" gatewayDirection="Diverging">
+      <bpmn:incoming>Flow_2</bpmn:incoming>
+      <bpmn:outgoing>Flow_3</bpmn:outgoing>
+      <bpmn:outgoing>Flow_5</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="T_hint" name="Hiện gợi ý nhập nội dung; giữ form">
+      <bpmn:incoming>Flow_3</bpmn:incoming>
+      <bpmn:outgoing>Flow_4</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="T_prepare" name="Tách dòng đầu thành tiêu đề; ngày mặc định hôm nay">
+      <bpmn:incoming>Flow_5</bpmn:incoming>
+      <bpmn:outgoing>Flow_6</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="T_badreminder" name="Lời nhắc quá khứ / sau ngày hạn?" default="Flow_9" gatewayDirection="Diverging">
+      <bpmn:incoming>Flow_6</bpmn:incoming>
+      <bpmn:outgoing>Flow_7</bpmn:outgoing>
+      <bpmn:outgoing>Flow_9</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="T_clear" name="Xóa reminderTime về 0; báo lý do; vẫn tạo task">
+      <bpmn:incoming>Flow_7</bpmn:incoming>
+      <bpmn:outgoing>Flow_8</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="T_merge" name="Tiếp tục xử lý" gatewayDirection="Converging">
+      <bpmn:incoming>Flow_8</bpmn:incoming>
+      <bpmn:incoming>Flow_9</bpmn:incoming>
+      <bpmn:outgoing>Flow_10</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="T_auth" name="Có UID?" default="Flow_11" gatewayDirection="Diverging">
+      <bpmn:incoming>Flow_10</bpmn:incoming>
+      <bpmn:outgoing>Flow_11</bpmn:outgoing>
+      <bpmn:outgoing>Flow_13</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="T_noauth" name="Yêu cầu đăng nhập; không ghi task">
+      <bpmn:incoming>Flow_11</bpmn:incoming>
+      <bpmn:outgoing>Flow_12</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:endEvent id="T_authend" name="Dừng; form chưa lưu">
+      <bpmn:incoming>Flow_12</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:serviceTask id="T_add" name="Gọi add(task) vào users/UID/tasks; chờ kết quả">
+      <bpmn:incoming>Flow_13</bpmn:incoming>
+      <bpmn:outgoing>Flow_14</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="T_result" name="Callback thành công?" default="Flow_15" gatewayDirection="Diverging">
+      <bpmn:incoming>Flow_14</bpmn:incoming>
+      <bpmn:outgoing>Flow_15</bpmn:outgoing>
+      <bpmn:outgoing>Flow_17</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="T_error" name="Báo lỗi ghi; giữ form để người dùng xử lý">
+      <bpmn:incoming>Flow_15</bpmn:incoming>
+      <bpmn:outgoing>Flow_16</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:endEvent id="T_errorend" name="Chưa xác nhận lưu">
+      <bpmn:incoming>Flow_16</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:task id="T_id" name="Nhận document ID; gửi update createdAt không chờ">
+      <bpmn:incoming>Flow_17</bpmn:incoming>
+      <bpmn:outgoing>Flow_18</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="T_future" name="reminderTime &gt; hiện tại?" default="Flow_19" gatewayDirection="Diverging">
+      <bpmn:incoming>Flow_18</bpmn:incoming>
+      <bpmn:outgoing>Flow_19</bpmn:outgoing>
+      <bpmn:outgoing>Flow_20</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="T_cancel" name="Hủy alarm cũ nếu có">
+      <bpmn:incoming>Flow_19</bpmn:incoming>
+      <bpmn:outgoing>Flow_22</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="T_request" name="Nếu Android 13+ chưa cấp: yêu cầu quyền thông báo; không chờ">
+      <bpmn:incoming>Flow_20</bpmn:incoming>
+      <bpmn:outgoing>Flow_21</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="T_schedule" name="Thay alarm: exact nếu được phép; nếu không, dùng inexact">
+      <bpmn:incoming>Flow_21</bpmn:incoming>
+      <bpmn:outgoing>Flow_23</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:task id="T_success" name="Thông báo thêm thành công; đóng bottom sheet">
+      <bpmn:incoming>Flow_22</bpmn:incoming>
+      <bpmn:incoming>Flow_23</bpmn:incoming>
+      <bpmn:outgoing>Flow_24</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:endEvent id="T_end" name="Task đã được ghi">
+      <bpmn:incoming>Flow_24</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1" sourceRef="T_start" targetRef="T_input" name="" />
+    <bpmn:sequenceFlow id="Flow_2" sourceRef="T_input" targetRef="T_empty" name="" />
+    <bpmn:sequenceFlow id="Flow_3" sourceRef="T_empty" targetRef="T_hint" name="Rỗng">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">trim(rawInput) == ""</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_4" sourceRef="T_hint" targetRef="T_input" name="" />
+    <bpmn:sequenceFlow id="Flow_5" sourceRef="T_empty" targetRef="T_prepare" name="Có nội dung" />
+    <bpmn:sequenceFlow id="Flow_6" sourceRef="T_prepare" targetRef="T_badreminder" name="" />
+    <bpmn:sequenceFlow id="Flow_7" sourceRef="T_badreminder" targetRef="T_clear" name="Không hợp lệ">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">reminder &gt; 0 and (reminder &lt;= now or reminder &gt;= dueDate + 86400000)</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_8" sourceRef="T_clear" targetRef="T_merge" name="" />
+    <bpmn:sequenceFlow id="Flow_9" sourceRef="T_badreminder" targetRef="T_merge" name="Hợp lệ / không đặt" />
+    <bpmn:sequenceFlow id="Flow_10" sourceRef="T_merge" targetRef="T_auth" name="" />
+    <bpmn:sequenceFlow id="Flow_11" sourceRef="T_auth" targetRef="T_noauth" name="Không" />
+    <bpmn:sequenceFlow id="Flow_12" sourceRef="T_noauth" targetRef="T_authend" name="" />
+    <bpmn:sequenceFlow id="Flow_13" sourceRef="T_auth" targetRef="T_add" name="Có">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">uid != null</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_14" sourceRef="T_add" targetRef="T_result" name="" />
+    <bpmn:sequenceFlow id="Flow_15" sourceRef="T_result" targetRef="T_error" name="Lỗi" />
+    <bpmn:sequenceFlow id="Flow_16" sourceRef="T_error" targetRef="T_errorend" name="" />
+    <bpmn:sequenceFlow id="Flow_17" sourceRef="T_result" targetRef="T_id" name="Thành công">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">callback.success</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_18" sourceRef="T_id" targetRef="T_future" name="" />
+    <bpmn:sequenceFlow id="Flow_19" sourceRef="T_future" targetRef="T_cancel" name="Không" />
+    <bpmn:sequenceFlow id="Flow_20" sourceRef="T_future" targetRef="T_request" name="Có">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">reminder &gt; now</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_21" sourceRef="T_request" targetRef="T_schedule" name="" />
+    <bpmn:sequenceFlow id="Flow_22" sourceRef="T_cancel" targetRef="T_success" name="" />
+    <bpmn:sequenceFlow id="Flow_23" sourceRef="T_schedule" targetRef="T_success" name="" />
+    <bpmn:sequenceFlow id="Flow_24" sourceRef="T_success" targetRef="T_end" name="" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagram_bpmn-01-create-task">
+    <bpmndi:BPMNPlane id="Plane_bpmn-01-create-task" bpmnElement="Collaboration_bpmn-01-create-task">
+      <bpmndi:BPMNShape id="DI_Participant_bpmn-01-create-task" bpmnElement="Participant_bpmn-01-create-task" isHorizontal="false">
+        <dc:Bounds x="30" y="70" width="1440" height="1680" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DI_Lane_bpmn-01-create-task_0" bpmnElement="Lane_bpmn-01-create-task_0" isHorizontal="false">
+        <dc:Bounds x="70" y="70" width="350" height="1680" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DI_Lane_bpmn-01-create-task_1" bpmnElement="Lane_bpmn-01-create-task_1" isHorizontal="false">
+        <dc:Bounds x="420" y="70" width="350" height="1680" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DI_Lane_bpmn-01-create-task_2" bpmnElement="Lane_bpmn-01-create-task_2" isHorizontal="false">
+        <dc:Bounds x="770" y="70" width="350" height="1680" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DI_Lane_bpmn-01-create-task_3" bpmnElement="Lane_bpmn-01-create-task_3" isHorizontal="false">
+        <dc:Bounds x="1120" y="70" width="350" height="1680" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DI_T_start" bpmnElement="T_start">
+        <dc:Bounds x="223.0" y="138.0" width="44" height="44" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="148.0" y="187.0" width="194" height="45" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DI_T_input" bpmnElement="T_input">
+        <dc:Bounds x="106.0" y="236.0" width="278" height="68" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DI_T_empty" bpmnElement="T_empty" isMarkerVisible="true">
+        <dc:Bounds x="563.0" y="238.0" width="64" height="64" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="488.0" y="307.0" width="214" height="45" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DI_T_hint" bpmnElement="T_hint">
+        <dc:Bounds x="106.0" y="386.0" width="278" height="68" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DI_T_prepare" bpmnElement="T_prepare">
+        <dc:Bounds x="456.0" y="426.0" width="278" height="68" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DI_T_badreminder" bpmnElement="T_badreminder" isMarkerVisible="true">
+        <dc:Bounds x="563.0" y="568.0" width="64" height="64" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="488.0" y="637.0" width="214" height="45" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DI_T_clear" bpmnElement="T_clear">
+        <dc:Bounds x="106.0" y="566.0" width="278" height="68" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DI_T_merge" bpmnElement="T_merge" isMarkerVisible="true">
+        <dc:Bounds x="563.0" y="708.0" width="64" height="64" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="488.0" y="777.0" width="214" height="45" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DI_T_auth" bpmnElement="T_auth" isMarkerVisible="true">
+        <dc:Bounds x="563.0" y="828.0" width="64" height="64" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="488.0" y="897.0" width="214" height="45" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DI_T_noauth" bpmnElement="T_noauth">
+        <dc:Bounds x="106.0" y="826.0" width="278" height="68" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DI_T_authend" bpmnElement="T_authend">
+        <dc:Bounds x="223.0" y="968.0" width="44" height="44" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="148.0" y="1017.0" width="194" height="45" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DI_T_add" bpmnElement="T_add">
+        <dc:Bounds x="806.0" y="826.0" width="278" height="68" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DI_T_result" bpmnElement="T_result" isMarkerVisible="true">
+        <dc:Bounds x="913.0" y="978.0" width="64" height="64" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="838.0" y="1047.0" width="214" height="45" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DI_T_error" bpmnElement="T_error">
+        <dc:Bounds x="456.0" y="976.0" width="278" height="68" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DI_T_errorend" bpmnElement="T_errorend">
+        <dc:Bounds x="573.0" y="1128.0" width="44" height="44" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="498.0" y="1177.0" width="194" height="45" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DI_T_id" bpmnElement="T_id">
+        <dc:Bounds x="806.0" y="1136.0" width="278" height="68" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DI_T_future" bpmnElement="T_future" isMarkerVisible="true">
+        <dc:Bounds x="1263.0" y="1138.0" width="64" height="64" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1188.0" y="1207.0" width="214" height="45" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DI_T_cancel" bpmnElement="T_cancel">
+        <dc:Bounds x="806.0" y="1286.0" width="278" height="68" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DI_T_request" bpmnElement="T_request">
+        <dc:Bounds x="1156.0" y="1286.0" width="278" height="68" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DI_T_schedule" bpmnElement="T_schedule">
+        <dc:Bounds x="1156.0" y="1426.0" width="278" height="68" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DI_T_success" bpmnElement="T_success">
+        <dc:Bounds x="456.0" y="1546.0" width="278" height="68" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DI_T_end" bpmnElement="T_end">
+        <dc:Bounds x="573.0" y="1668.0" width="44" height="44" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="498.0" y="1717.0" width="194" height="45" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="DI_Flow_1" bpmnElement="Flow_1">
+        <di:waypoint x="245.0" y="182.0" />
+        <di:waypoint x="245.0" y="236.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_2" bpmnElement="Flow_2">
+        <di:waypoint x="384.0" y="270.0" />
+        <di:waypoint x="563.0" y="270.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_3" bpmnElement="Flow_3">
+        <di:waypoint x="563" y="270" />
+        <di:waypoint x="435" y="270" />
+        <di:waypoint x="435" y="420" />
+        <di:waypoint x="384" y="420" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="447.0" y="331.0" width="130" height="30" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_4" bpmnElement="Flow_4">
+        <di:waypoint x="245.0" y="386.0" />
+        <di:waypoint x="245.0" y="304.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_5" bpmnElement="Flow_5">
+        <di:waypoint x="595.0" y="302.0" />
+        <di:waypoint x="595.0" y="426.0" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="607.0" y="353.0" width="130" height="30" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_6" bpmnElement="Flow_6">
+        <di:waypoint x="595.0" y="494.0" />
+        <di:waypoint x="595.0" y="568.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_7" bpmnElement="Flow_7">
+        <di:waypoint x="563.0" y="600.0" />
+        <di:waypoint x="384.0" y="600.0" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="408.5" y="575.0" width="130" height="30" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_8" bpmnElement="Flow_8">
+        <di:waypoint x="384" y="600" />
+        <di:waypoint x="410" y="600" />
+        <di:waypoint x="410" y="740" />
+        <di:waypoint x="563" y="740" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_9" bpmnElement="Flow_9">
+        <di:waypoint x="595.0" y="632.0" />
+        <di:waypoint x="595.0" y="708.0" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="607.0" y="683.0" width="130" height="30" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_10" bpmnElement="Flow_10">
+        <di:waypoint x="595.0" y="772.0" />
+        <di:waypoint x="595.0" y="828.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_11" bpmnElement="Flow_11">
+        <di:waypoint x="563.0" y="860.0" />
+        <di:waypoint x="384.0" y="860.0" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="408.5" y="835.0" width="130" height="30" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_12" bpmnElement="Flow_12">
+        <di:waypoint x="245.0" y="894.0" />
+        <di:waypoint x="245.0" y="968.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_13" bpmnElement="Flow_13">
+        <di:waypoint x="627.0" y="860.0" />
+        <di:waypoint x="806.0" y="860.0" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="651.5" y="835.0" width="130" height="30" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_14" bpmnElement="Flow_14">
+        <di:waypoint x="945.0" y="894.0" />
+        <di:waypoint x="945.0" y="978.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_15" bpmnElement="Flow_15">
+        <di:waypoint x="913.0" y="1010.0" />
+        <di:waypoint x="734.0" y="1010.0" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="758.5" y="985.0" width="130" height="30" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_16" bpmnElement="Flow_16">
+        <di:waypoint x="595.0" y="1044.0" />
+        <di:waypoint x="595.0" y="1128.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_17" bpmnElement="Flow_17">
+        <di:waypoint x="945.0" y="1042.0" />
+        <di:waypoint x="945.0" y="1136.0" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="957.0" y="1093.0" width="130" height="30" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_18" bpmnElement="Flow_18">
+        <di:waypoint x="1084.0" y="1170.0" />
+        <di:waypoint x="1263.0" y="1170.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_19" bpmnElement="Flow_19">
+        <di:waypoint x="1327" y="1170" />
+        <di:waypoint x="1440" y="1170" />
+        <di:waypoint x="1440" y="1240" />
+        <di:waypoint x="1100" y="1240" />
+        <di:waypoint x="1100" y="1320" />
+        <di:waypoint x="1084" y="1320" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1205.0" y="1215.0" width="130" height="30" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_20" bpmnElement="Flow_20">
+        <di:waypoint x="1295.0" y="1202.0" />
+        <di:waypoint x="1295.0" y="1286.0" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1307.0" y="1253.0" width="130" height="30" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_21" bpmnElement="Flow_21">
+        <di:waypoint x="1295.0" y="1354.0" />
+        <di:waypoint x="1295.0" y="1426.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_22" bpmnElement="Flow_22">
+        <di:waypoint x="806.0" y="1320.0" />
+        <di:waypoint x="595.0" y="1320.0" />
+        <di:waypoint x="595.0" y="1546.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_23" bpmnElement="Flow_23">
+        <di:waypoint x="1156.0" y="1460.0" />
+        <di:waypoint x="595.0" y="1460.0" />
+        <di:waypoint x="595.0" y="1546.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DI_Flow_24" bpmnElement="Flow_24">
+        <di:waypoint x="595.0" y="1614.0" />
+        <di:waypoint x="595.0" y="1668.0" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

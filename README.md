@@ -6,6 +6,10 @@ TickTok kết hợp danh sách việc cần làm, lịch, sự kiện và bộ �
 
 Dự án được viết bằng **Java**, sử dụng giao diện **XML**, **Firebase Authentication** để xác thực và **Cloud Firestore** để lưu dữ liệu theo tài khoản.
 
+## Tài liệu phân tích nghiệp vụ
+
+[Bộ tài liệu BA](docs/ba/README.md) gồm BRD, SRS, User Stories & Acceptance Criteria, Business Rules, Use Case Diagram, đặc tả use case và các quy trình BPMN. Nội dung mô tả hiện trạng theo mã nguồn; sơ đồ có bản xem SVG và file nguồn chỉnh sửa.
+
 ## Tính năng
 
 | Nhóm chức năng | Nội dung |
@@ -41,6 +45,26 @@ Các phiên bản dưới đây phản ánh cấu hình đang có trong mã ngu�
 | Cài đặt cục bộ | SharedPreferences |
 
 ## Cấu trúc mã nguồn
+
+```text
+TickTok/
+├── app/                  # Mã nguồn và tài nguyên Android
+├── docs/
+│   ├── ba/               # Yêu cầu, use case, BPMN và truy vết
+│   └── reference/        # Sơ đồ và tư liệu gốc
+├── scripts/              # Công cụ tái tạo sơ đồ
+├── gradle/               # Gradle Wrapper và cấu hình phiên bản
+├── build.gradle.kts
+├── settings.gradle.kts
+├── gradle.properties
+├── gradlew
+├── gradlew.bat
+└── README.md
+```
+
+[Mục lục tài liệu](docs/README.md) · [Hướng dẫn công cụ tài liệu](scripts/README.md).
+
+Chi tiết module Android:
 
 ```text
 app/

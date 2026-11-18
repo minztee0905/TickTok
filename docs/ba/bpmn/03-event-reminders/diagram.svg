@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1470" height="2220" viewBox="0 0 1470 2220">
+<title>BPMN-03 · Lưu sự kiện và lập hai mốc nhắc</title>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/></marker></defs>
+<rect x="0" y="0" width="1470" height="2220" fill="#ffffff"/>
+<g font-family="Arial, Helvetica, sans-serif">
+<g><text x="735.0" y="30.0" text-anchor="middle" fill="#172033" font-size="21">BPMN-03 · Lưu sự kiện và lập hai mốc nhắc</text></g>
+<rect x="70" y="70" width="350" height="2120" fill="#f8fafc" stroke="#94a3b8"/>
+<rect x="70" y="70" width="350" height="45" fill="#dbeafe" stroke="#94a3b8"/>
+<g><text x="245" y="98.0" text-anchor="middle" fill="#172033" font-size="16">Tương tác người dùng / UI</text></g>
+<rect x="420" y="70" width="350" height="2120" fill="#f1f5f9" stroke="#94a3b8"/>
+<rect x="420" y="70" width="350" height="45" fill="#dbeafe" stroke="#94a3b8"/>
+<g><text x="595" y="98.0" text-anchor="middle" fill="#172033" font-size="16">Ứng dụng TickTok</text></g>
+<rect x="770" y="70" width="350" height="2120" fill="#f8fafc" stroke="#94a3b8"/>
+<rect x="770" y="70" width="350" height="45" fill="#dbeafe" stroke="#94a3b8"/>
+<g><text x="945" y="98.0" text-anchor="middle" fill="#172033" font-size="16">Firestore SDK / callback</text></g>
+<rect x="1120" y="70" width="350" height="2120" fill="#f1f5f9" stroke="#94a3b8"/>
+<rect x="1120" y="70" width="350" height="45" fill="#dbeafe" stroke="#94a3b8"/>
+<g><text x="1295" y="98.0" text-anchor="middle" fill="#172033" font-size="16">Android: quyền và alarm</text></g>
+<polyline points="245.0,182.0 245.0,241.0" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polygon points="245.0,241.0 249.0,232.0 241.0,232.0" fill="#475569"/>
+<polyline points="384.0,275.0 563.0,275.0" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polygon points="563.0,275.0 554.0,271.0 554.0,279.0" fill="#475569"/>
+<polyline points="563,275 435,275 435,430 384,430" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polygon points="384,430 393.0,434.0 393.0,426.0" fill="#475569"/>
+<path d="M558 282 l10 -10" stroke="#475569"/>
+<g><text x="447.0" y="352.5" text-anchor="start" fill="#334155" font-size="12">Chưa hợp lệ</text></g>
+<polyline points="245.0,396.0 245.0,309.0" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polygon points="245.0,309.0 241.0,318.0 249.0,318.0" fill="#475569"/>
+<polyline points="595.0,307.0 595.0,443.0" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polygon points="595.0,443.0 599.0,434.0 591.0,434.0" fill="#475569"/>
+<g><text x="607.0" y="375.0" text-anchor="start" fill="#334155" font-size="12">Hợp lệ</text></g>
+<polyline points="563.0,475.0 245.0,475.0 245.0,561.0" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polygon points="245.0,561.0 249.0,552.0 241.0,552.0" fill="#475569"/>
+<path d="M558.0 482.0 l10 -10" stroke="#475569"/>
+<g><text x="404.0" y="464.0" text-anchor="middle" fill="#334155" font-size="12">Không</text></g>
+<polyline points="245.0,629.0 245.0,708.0" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polygon points="245.0,708.0 249.0,699.0 241.0,699.0" fill="#475569"/>
+<polyline points="627.0,475.0 806.0,475.0" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polygon points="806.0,475.0 797.0,471.0 797.0,479.0" fill="#475569"/>
+<g><text x="716.5" y="464.0" text-anchor="middle" fill="#334155" font-size="12">Có</text></g>
+<polyline points="945.0,509.0 945.0,598.0" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polygon points="945.0,598.0 949.0,589.0 941.0,589.0" fill="#475569"/>
+<polyline points="913.0,630.0 734.0,630.0" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polygon points="734.0,630.0 743.0,634.0 743.0,626.0" fill="#475569"/>
+<path d="M908.0 637.0 l10 -10" stroke="#475569"/>
+<g><text x="823.5" y="619.0" text-anchor="middle" fill="#334155" font-size="12">Lỗi</text></g>
+<polyline points="595.0,664.0 595.0,758.0" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polygon points="595.0,758.0 599.0,749.0 591.0,749.0" fill="#475569"/>
+<polyline points="945.0,662.0 945.0,766.0" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polygon points="945.0,766.0 949.0,757.0 941.0,757.0" fill="#475569"/>
+<g><text x="957.0" y="727.0" text-anchor="start" fill="#334155" font-size="12">Thành công</text></g>
+<polyline points="945.0,834.0 945.0,918.0" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polygon points="945.0,918.0 949.0,909.0 941.0,909.0" fill="#475569"/>
+<polyline points="913.0,950.0 617.0,950.0" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polygon points="617.0,950.0 626.0,954.0 626.0,946.0" fill="#475569"/>
+<path d="M908.0 957.0 l10 -10" stroke="#475569"/>
+<g><text x="765.0" y="939.0" text-anchor="middle" fill="#334155" font-size="12">Không</text></g>
+<polyline points="977.0,950.0 1156.0,950.0" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polygon points="1156.0,950.0 1147.0,946.0 1147.0,954.0" fill="#475569"/>
+<g><text x="1066.5" y="939.0" text-anchor="middle" fill="#334155" font-size="12">Có</text></g>
+<polyline points="1295.0,984.0 1295.0,1078.0" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polygon points="1295.0,1078.0 1299.0,1069.0 1291.0,1069.0" fill="#475569"/>
+<polyline points="1295.0,1142.0 1295.0,1236.0" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polygon points="1295.0,1236.0 1299.0,1227.0 1291.0,1227.0" fill="#475569"/>
+<g><text x="1307.0" y="1207.0" text-anchor="start" fill="#334155" font-size="12">Có</text></g>
+<polyline points="1327,1110 1445,1110 1445,1990 734,1990" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polygon points="734,1990 743.0,1994.0 743.0,1986.0" fill="#475569"/>
+<path d="M1322 1117 l10 -10" stroke="#475569"/>
+<g><text x="1433.0" y="1550.0" text-anchor="end" fill="#334155" font-size="12">Không</text></g>
+<polyline points="1295.0,1304.0 1295.0,1366.0" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polygon points="1295.0,1366.0 1299.0,1357.0 1291.0,1357.0" fill="#475569"/>
+<polyline points="1295.0,1434.0 1295.0,1508.0" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polygon points="1295.0,1508.0 1299.0,1499.0 1291.0,1499.0" fill="#475569"/>
+<polyline points="1263.0,1540.0 1084.0,1540.0" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polygon points="1084.0,1540.0 1093.0,1544.0 1093.0,1536.0" fill="#475569"/>
+<path d="M1258.0 1547.0 l10 -10" stroke="#475569"/>
+<g><text x="1173.5" y="1529.0" text-anchor="middle" fill="#334155" font-size="12">Không</text></g>
+<polyline points="1295.0,1572.0 1295.0,1656.0" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polygon points="1295.0,1656.0 1299.0,1647.0 1291.0,1647.0" fill="#475569"/>
+<g><text x="1307.0" y="1637.0" text-anchor="start" fill="#334155" font-size="12">Có</text></g>
+<polyline points="945.0,1574.0 945.0,1798.0" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polygon points="945.0,1798.0 949.0,1789.0 941.0,1789.0" fill="#475569"/>
+<polyline points="1156.0,1690.0 945.0,1690.0 945.0,1798.0" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polygon points="945.0,1798.0 949.0,1789.0 941.0,1789.0" fill="#475569"/>
+<polyline points="977,1830 1105,1830 1105,1400 1156,1400" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polygon points="1156,1400 1147.0,1396.0 1147.0,1404.0" fill="#475569"/>
+<g><text x="1117.0" y="1615.0" text-anchor="start" fill="#334155" font-size="12">Có</text></g>
+<polyline points="913.0,1830.0 595.0,1830.0 595.0,1956.0" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polygon points="595.0,1956.0 599.0,1947.0 591.0,1947.0" fill="#475569"/>
+<path d="M908.0 1837.0 l10 -10" stroke="#475569"/>
+<g><text x="754.0" y="1819.0" text-anchor="middle" fill="#334155" font-size="12">Không</text></g>
+<polyline points="595.0,2024.0 595.0,2118.0" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polygon points="595.0,2118.0 599.0,2109.0 591.0,2109.0" fill="#475569"/>
+<circle cx="245.0" cy="160.0" r="22" fill="white" stroke="#172033" stroke-width="1.7"/>
+<g><text x="245.0" y="203.0" text-anchor="middle" fill="#172033" font-size="13">Thêm hoặc sửa sự kiện</text></g>
+<rect x="106.0" y="241.0" width="278" height="68" rx="9" fill="white" stroke="#172033" stroke-width="1.4"/>
+<circle cx="122.0" cy="254.0" r="4" fill="none" stroke="#334155"/><path d="M115.0 268.0 q0 -10 7 -10 q7 0 7 10 M122.0 259.0 v10" fill="none" stroke="#334155"/>
+<g><text x="245.0" y="270.32" text-anchor="middle" fill="#172033" font-size="14">Nhập tên, biểu tượng, chọn ngày;</text><text x="245.0" y="287.68" text-anchor="middle" fill="#172033" font-size="14">bấm Lưu</text></g>
+<polygon points="595.0,243.0 627.0,275.0 595.0,307.0 563.0,275.0" fill="white" stroke="#172033" stroke-width="1.6"/>
+<g><text x="595.0" y="282.0" text-anchor="middle" fill="#172033" font-size="34">×</text></g>
+<g><text x="595.0" y="328.0" text-anchor="middle" fill="#172033" font-size="13">Có ngày và tên sau trim?</text></g>
+<rect x="106.0" y="396.0" width="278" height="68" rx="9" fill="white" stroke="#172033" stroke-width="1.4"/>
+<g><text x="245.0" y="425.32" text-anchor="middle" fill="#172033" font-size="14">Chưa ngày: Lưu tắt; thiếu tên:</text><text x="245.0" y="442.68" text-anchor="middle" fill="#172033" font-size="14">nhắc nhập</text></g>
+<polygon points="595.0,443.0 627.0,475.0 595.0,507.0 563.0,475.0" fill="white" stroke="#172033" stroke-width="1.6"/>
+<g><text x="595.0" y="482.0" text-anchor="middle" fill="#172033" font-size="34">×</text></g>
+<g><text x="595.0" y="528.0" text-anchor="middle" fill="#172033" font-size="13">Có UID / ID sửa hợp lệ?</text></g>
+<rect x="106.0" y="561.0" width="278" height="68" rx="9" fill="white" stroke="#172033" stroke-width="1.4"/>
+<g><text x="245.0" y="599.0" text-anchor="middle" fill="#172033" font-size="14">Báo lỗi; bật lại trạng thái Lưu</text></g>
+<circle cx="245.0" cy="730.0" r="22" fill="white" stroke="#172033" stroke-width="3.7"/>
+<g><text x="245.0" y="773.0" text-anchor="middle" fill="#172033" font-size="13">Chưa lưu sự kiện</text></g>
+<rect x="806.0" y="441.0" width="278" height="68" rx="9" fill="white" stroke="#172033" stroke-width="1.4"/>
+<g><text x="822.0" y="463.0" text-anchor="middle" fill="#172033" font-size="20">⚙</text></g>
+<g><text x="945.0" y="461.64" text-anchor="middle" fill="#172033" font-size="14">Thêm mới hoặc update</text><text x="945.0" y="479.0" text-anchor="middle" fill="#172033" font-size="14">title/icon/targetDate; chờ</text><text x="945.0" y="496.36" text-anchor="middle" fill="#172033" font-size="14">callback</text></g>
+<polygon points="945.0,598.0 977.0,630.0 945.0,662.0 913.0,630.0" fill="white" stroke="#172033" stroke-width="1.6"/>
+<g><text x="945.0" y="637.0" text-anchor="middle" fill="#172033" font-size="34">×</text></g>
+<g><text x="945.0" y="683.0" text-anchor="middle" fill="#172033" font-size="13">Callback thành công?</text></g>
+<rect x="456.0" y="596.0" width="278" height="68" rx="9" fill="white" stroke="#172033" stroke-width="1.4"/>
+<g><text x="595.0" y="625.32" text-anchor="middle" fill="#172033" font-size="14">Báo lỗi nếu Fragment còn gắn;</text><text x="595.0" y="642.6800000000001" text-anchor="middle" fill="#172033" font-size="14">cho sửa lại</text></g>
+<circle cx="595.0" cy="780.0" r="22" fill="white" stroke="#172033" stroke-width="3.7"/>
+<g><text x="595.0" y="823.0" text-anchor="middle" fill="#172033" font-size="13">Chưa xác nhận lưu</text></g>
+<rect x="806.0" y="766.0" width="278" height="68" rx="9" fill="white" stroke="#172033" stroke-width="1.4"/>
+<g><text x="945.0" y="795.32" text-anchor="middle" fill="#172033" font-size="14">Nhận ID; chỉ khi thêm: gửi</text><text x="945.0" y="812.6800000000001" text-anchor="middle" fill="#172033" font-size="14">update createdAt không chờ</text></g>
+<polygon points="945.0,918.0 977.0,950.0 945.0,982.0 913.0,950.0" fill="white" stroke="#172033" stroke-width="1.6"/>
+<g><text x="945.0" y="957.0" text-anchor="middle" fill="#172033" font-size="34">×</text></g>
+<g><text x="945.0" y="1003.0" text-anchor="middle" fill="#172033" font-size="13">Fragment còn gắn?</text></g>
+<circle cx="595.0" cy="950.0" r="22" fill="white" stroke="#172033" stroke-width="3.7"/>
+<g><text x="595.0" y="993.0" text-anchor="middle" fill="#172033" font-size="13">Đã ghi; callback dừng</text></g>
+<rect x="1156.0" y="916.0" width="278" height="68" rx="9" fill="white" stroke="#172033" stroke-width="1.4"/>
+<g><text x="1172.0" y="938.0" text-anchor="middle" fill="#172033" font-size="20">⚙</text></g>
+<g><text x="1295.0" y="945.32" text-anchor="middle" fill="#172033" font-size="14">Yêu cầu quyền thông báo nếu cần;</text><text x="1295.0" y="962.6800000000001" text-anchor="middle" fill="#172033" font-size="14">không chờ trả lời</text></g>
+<polygon points="1295.0,1078.0 1327.0,1110.0 1295.0,1142.0 1263.0,1110.0" fill="white" stroke="#172033" stroke-width="1.6"/>
+<g><text x="1295.0" y="1117.0" text-anchor="middle" fill="#172033" font-size="34">×</text></g>
+<g><text x="1295.0" y="1163.0" text-anchor="middle" fill="#172033" font-size="13">AlarmManager khả dụng?</text></g>
+<rect x="1156.0" y="1236.0" width="278" height="68" rx="9" fill="white" stroke="#172033" stroke-width="1.4"/>
+<g><text x="1172.0" y="1258.0" text-anchor="middle" fill="#172033" font-size="20">⚙</text></g>
+<g><text x="1295.0" y="1274.0" text-anchor="middle" fill="#172033" font-size="14">Hủy cả hai alarm cũ của event</text></g>
+<rect x="1156.0" y="1366.0" width="278" height="68" rx="9" fill="white" stroke="#172033" stroke-width="1.4"/>
+<g><text x="1295.0" y="1395.32" text-anchor="middle" fill="#172033" font-size="14">Lần lượt lấy 08:00 ngày trước và</text><text x="1295.0" y="1412.6799999999998" text-anchor="middle" fill="#172033" font-size="14">08:00 ngày diễn ra</text></g>
+<polygon points="1295.0,1508.0 1327.0,1540.0 1295.0,1572.0 1263.0,1540.0" fill="white" stroke="#172033" stroke-width="1.6"/>
+<g><text x="1295.0" y="1547.0" text-anchor="middle" fill="#172033" font-size="34">×</text></g>
+<g><text x="1295.0" y="1593.0" text-anchor="middle" fill="#172033" font-size="13">Mốc đang xét &gt; hiện tại?</text></g>
+<rect x="806.0" y="1506.0" width="278" height="68" rx="9" fill="white" stroke="#172033" stroke-width="1.4"/>
+<g><text x="945.0" y="1544.0" text-anchor="middle" fill="#172033" font-size="14">Bỏ qua mốc đã qua</text></g>
+<rect x="1156.0" y="1656.0" width="278" height="68" rx="9" fill="white" stroke="#172033" stroke-width="1.4"/>
+<g><text x="1172.0" y="1678.0" text-anchor="middle" fill="#172033" font-size="20">⚙</text></g>
+<g><text x="1295.0" y="1685.32" text-anchor="middle" fill="#172033" font-size="14">Đặt alarm cho mốc này: exact nếu</text><text x="1295.0" y="1702.6799999999998" text-anchor="middle" fill="#172033" font-size="14">cho phép; nếu không inexact</text></g>
+<polygon points="945.0,1798.0 977.0,1830.0 945.0,1862.0 913.0,1830.0" fill="white" stroke="#172033" stroke-width="1.6"/>
+<g><text x="945.0" y="1837.0" text-anchor="middle" fill="#172033" font-size="34">×</text></g>
+<g><text x="945.0" y="1883.0" text-anchor="middle" fill="#172033" font-size="13">Còn mốc chưa xét?</text></g>
+<rect x="456.0" y="1956.0" width="278" height="68" rx="9" fill="white" stroke="#172033" stroke-width="1.4"/>
+<g><text x="595.0" y="1985.32" text-anchor="middle" fill="#172033" font-size="14">Thông báo lưu thành công; đóng</text><text x="595.0" y="2002.6799999999998" text-anchor="middle" fill="#172033" font-size="14">bottom sheet</text></g>
+<circle cx="595.0" cy="2140.0" r="22" fill="white" stroke="#172033" stroke-width="3.7"/>
+<g><text x="595.0" y="2174.94" text-anchor="middle" fill="#172033" font-size="13">Đã lưu; có thể có 0–2</text><text x="595.0" y="2191.06" text-anchor="middle" fill="#172033" font-size="13">alarm</text></g>
+</g></svg>

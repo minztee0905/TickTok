@@ -1,0 +1,82 @@
+@startuml
+left to right direction
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam defaultFontName Arial
+actor "Người dùng" as User
+actor "Firebase Authentication" as Auth
+actor "Cloud Firestore" as DB
+actor "Dịch vụ Android / ứng dụng nhận chia sẻ" as OS
+rectangle "Ứng dụng TickTok" {
+  usecase "UC-01\nĐăng ký tài khoản" as UC01
+  usecase "UC-02\nĐăng nhập tài khoản" as UC02
+  usecase "UC-03\nĐăng nhập Google" as UC03
+  usecase "UC-04\nQuản lý danh mục" as UC04
+  usecase "UC-05\nThêm công việc" as UC05
+  usecase "UC-06\nSửa công việc" as UC06
+  usecase "UC-07\nĐổi trạng thái hoàn thành" as UC07
+  usecase "UC-08\nXóa công việc" as UC08
+  usecase "UC-09\nXem / lọc công việc" as UC09
+  usecase "UC-10\nTìm kiếm công việc" as UC10
+  usecase "UC-11\nQuản lý sự kiện" as UC11
+  usecase "UC-12\nSử dụng Pomodoro" as UC12
+  usecase "UC-13\nXem thống kê tập trung" as UC13
+  usecase "UC-14\nChia sẻ thống kê" as UC14
+  usecase "UC-15\nCài đặt giao diện / âm thanh" as UC15
+  usecase "UC-16\nĐổi mật khẩu" as UC16
+  usecase "UC-17\nĐăng xuất" as UC17
+  usecase "UC-18\nNhập công việc bằng giọng nói" as UC18
+}
+User -- UC01
+User -- UC02
+User -- UC03
+User -- UC04
+User -- UC05
+User -- UC06
+User -- UC07
+User -- UC08
+User -- UC09
+User -- UC10
+User -- UC11
+User -- UC12
+User -- UC13
+User -- UC14
+User -- UC15
+User -- UC16
+User -- UC17
+User -- UC18
+UC01 -- Auth
+UC02 -- Auth
+UC03 -- Auth
+UC16 -- Auth
+UC17 -- Auth
+UC04 -- DB
+UC05 -- DB
+UC06 -- DB
+UC07 -- DB
+UC08 -- DB
+UC09 -- DB
+UC10 -- DB
+UC11 -- DB
+UC12 -- DB
+UC13 -- DB
+UC05 -- OS
+UC06 -- OS
+UC07 -- OS
+UC08 -- OS
+UC11 -- OS
+UC12 -- OS
+UC14 -- OS
+UC18 -- OS
+UC18 ..> UC05 : <<extend>>\n[nhập bằng giọng nói]
+UC18 ..> UC06 : <<extend>>\n[nhập bằng giọng nói]
+UC14 ..> UC13 : <<extend>>\n[chọn chia sẻ]
+note bottom of UC15
+Âm thanh: hiện chỉ lưu lựa chọn;
+chưa chi phối chuông Pomodoro.
+end note
+note bottom of UC09
+Lịch và ma trận nằm trong UC-09;
+ma trận hiện phân nhóm theo priority.
+end note
+@enduml
